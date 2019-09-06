@@ -1,0 +1,19 @@
+AllCops:
+  Include:
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - '**/*.rb'
+  Exclude:
+    - 'db/schema.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'Rakefile'
+
+Style/GlobalVars:
+  Exclude:
+    - 'config.ru'
