@@ -18,6 +18,9 @@ class BaseApp < Sinatra::Base
   env    = ENV['RACK_ENV'] || 'development'
   config = YAML.load_file root.join('config', 'database.yml')
 
+  register Sinatra::ConfigFile
+  config_file $root.join('config', 'application.yml')
+
   ActiveRecord::Base.configurations = config
   ActiveRecord::Base.establish_connection env.to_sym
 end
