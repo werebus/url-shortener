@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'sinatra/base'
-require 'sinatra/reloader'
-
-require 'active_record'
 require 'pathname'
 require 'yaml'
+
+require 'bundler'
+env = ENV['RACK_ENV'] || 'development'
+Bundler.require(:default, env)
 
 $root = Pathname(__dir__).expand_path
 

@@ -3,7 +3,10 @@
 require 'yaml'
 require 'logger'
 require 'pathname'
-require 'active_record'
+
+require 'bundler'
+env = ENV['RACK_ENV'] || 'development'
+Bundler.require(:default, env)
 
 include ActiveRecord::Tasks
 
@@ -21,7 +24,7 @@ end
 
 root = Pathname(__dir__).expand_path
 
-DatabaseTasks.env = ENV['RACK_ENV'] || 'development'
+DatabaseTasks.env = env
 conf = root.join('config', 'database.yml')
 DatabaseTasks.database_configuration = YAML.load_file(conf)
 DatabaseTasks.db_dir = root.join 'db'

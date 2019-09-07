@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'irb'
+require 'irb/completion'
+require 'pathname'
+
+require 'bundler'
+
+$env = ENV['RACK_ENV'] || 'development'
+$root = Pathname(__dir__).join('..').expand_path
+
+def reload!
+  Bundler.require(:default, $env)
+
+  $root.join('models').glob('*.rb').sort.each do |model|
+    load model
+  end.all?
+end
+reload!
+
+config = YAML.load_file $root.join('config', 'database.yml')
+
+ActiveRecord::Base.configurations = config
+ActiveRecord::Base.establish_connection $env.to_sym
+
+STDOUT.sync = true
+IRB.setup nil
+IRB.conf.merge!(
+  AUTO_INDENT: true,
+  IRB_NAME: 'url-shortener',
+  IRB_PATH: '(url-shortener)',
+  PROMPT_MODE: :CLASSIC,
+  RC: false
+)
+
+FancyIrb.start
+Wirb.start
+IRB::Irb.new.run(IRB.conf)
