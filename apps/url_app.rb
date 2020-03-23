@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'uri'
+require 'json'
 
 class UrlApp < BaseApp
+  set :secret, nil
+
   get %r{/([a-z]+)} do |slug|
     r = Redirect.find_by_slug(slug)
     if r.present?
@@ -16,5 +19,21 @@ class UrlApp < BaseApp
 
   get '/' do
     redirect settings.default_url, 301
+  end
+
+  post '/' do
+    if request.content_length.to_i > 0
+      request.body.rewind
+      params.merge! JSON.parse(request.body.read)
+    end
+    require_key
+  end
+
+  private
+
+  def require_key
+    return unless settings.secret?
+
+    halt 401, 'Bad Key' unless params[:key] == settings.secret
   end
 end

@@ -2,34 +2,33 @@
 
 require 'pathname'
 require 'yaml'
-
 require 'bundler'
-env = ENV['RACK_ENV'] || 'development'
-Bundler.require(:default, env)
-
-$root = Pathname(__dir__).expand_path
+require 'sinatra/config_file'
 
 class BaseApp < Sinatra::Base
+  Bundler.require(:default, settings.environment)
+  set :secret, nil
+
   configure :development do
+    require 'sinatra/reloader'
     register Sinatra::Reloader
   end
 
-  root   = $root
-  env    = ENV['RACK_ENV'] || 'development'
-  config = YAML.load_file root.join('config', 'database.yml')
+  root = Pathname(settings.root)
 
   register Sinatra::ConfigFile
-  config_file $root.join('config', 'application.yml')
+  config_file root.join('config', 'application.yml')
 
-  ActiveRecord::Base.configurations = config
-  ActiveRecord::Base.establish_connection env.to_sym
+  db_config = YAML.load_file root.join('config', 'database.yml')
+  ActiveRecord::Base.configurations = db_config
+  ActiveRecord::Base.establish_connection settings.environment
 end
 
-$root.join('models').glob('*.rb').sort.each do |model|
+Pathname(__dir__).join('models').glob('*.rb').sort.each do |model|
   require model
 end
 
-$root.join('apps').glob('*.rb').sort.each do |app|
+Pathname(__dir__).join('apps').glob('*.rb').sort.each do |app|
   require app
 end
 
