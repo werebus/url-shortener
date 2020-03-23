@@ -10,7 +10,7 @@ gem 'fancy_irb'
 gem 'pg'
 gem 'rake'
 gem 'sinatra', require: 'sinatra/base'
-gem 'sinatra-contrib'
+gem 'sinatra-contrib', require: false
 gem 'wirb'
 
 group :development do
