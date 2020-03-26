@@ -2,6 +2,7 @@
 
 require 'uri'
 require 'json'
+require 'sinatra/json'
 
 class UrlApp < BaseApp
   set :secret, nil
@@ -27,6 +28,7 @@ class UrlApp < BaseApp
       params.merge! JSON.parse(request.body.read)
     end
     require_key
+    json Redirect.where(url: params[:url]).first_or_create
   end
 
   private
