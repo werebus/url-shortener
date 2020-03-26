@@ -11,6 +11,7 @@ gem 'pg'
 gem 'rake'
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: false
+gem 'validate_url'
 gem 'wirb'
 
 group :development do

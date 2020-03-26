@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Redirect < ActiveRecord::Base
-  validates :slug, :url, presence: true
+  validates :url, url: { no_local: true, public_suffix: true }
   validates :slug, format: { with: /\A[a-z]+\z/ }
 
   before_validation :assign_next_slug, on: :create, if: ->{ slug.blank? }

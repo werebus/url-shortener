@@ -38,6 +38,7 @@ GEM
     pry-byebug (3.7.0)
       byebug (~> 11.0)
       pry (~> 0.10)
+    public_suffix (4.0.3)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -68,6 +69,9 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    validate_url (1.0.8)
+      activemodel (>= 3.0.0)
+      public_suffix
     wirb (2.1.2)
       paint (>= 0.9, < 3.0)
     zeitwerk (2.1.10)
@@ -85,6 +89,7 @@ DEPENDENCIES
   rubocop
   sinatra
   sinatra-contrib
+  validate_url
   wirb
 
 RUBY VERSION
