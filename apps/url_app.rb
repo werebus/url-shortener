@@ -24,6 +24,8 @@ class UrlApp < BaseApp
       params.merge! JSON.parse(request.body.read)
     end
     require_key
+    require_url
+
     json Redirect.where(url: params[:url]).first_or_create
   end
 
@@ -33,5 +35,11 @@ class UrlApp < BaseApp
     return unless settings.secret?
 
     halt 401, 'Bad Key' unless params[:key] == settings.secret
+  end
+
+  def require_url
+    return if params[:url].present?
+
+    halt 400, 'URL Required'
   end
 end
