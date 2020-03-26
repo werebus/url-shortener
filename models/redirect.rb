@@ -6,16 +6,11 @@ class Redirect < ActiveRecord::Base
 
   before_validation :assign_next_slug, on: :create, if: ->{ slug.blank? }
 
+  scope :slug_order, -> { order('LENGTH(slug), slug') }
+
   private
 
   def assign_next_slug
-    new_slug = Redirect.order(:slug).last.slug.succ
-    loop do
-      unless Redirect.exists?(slug: new_slug)
-        self.slug = new_slug
-        break
-      end
-      new_slug = new_slug.succ
-    end
+    self.slug = Redirect.unscoped.slug_order.last.slug.succ
   end
 end
