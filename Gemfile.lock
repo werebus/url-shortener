@@ -81,6 +81,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  activesupport
   fancy_irb
   pg
   pry

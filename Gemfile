@@ -6,6 +6,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 ruby IO.read(File.expand_path('.ruby-version', __dir__)).strip
 
 gem 'activerecord', require: 'active_record'
+gem 'activesupport', require: 'active_support'
 gem 'fancy_irb'
 gem 'pg'
 gem 'rake'
