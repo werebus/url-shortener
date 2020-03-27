@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+lock '~> 3.12'
+
+set :application, 'url-shortener'
+set :repo_url, 'https://github.com/werebus/url-shortener.git'
+
+set :deploy_to, '/srv/url-shortener'
+
+append :linked_files, 'config/database.yml', 'config/application.yml'
+append :linked_dirs, 'vendor/bundle'
+
+set :migration_role, :app
+
+set :passenger_restart_with_touch, true

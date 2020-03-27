@@ -16,6 +16,11 @@ gem 'validate_url'
 gem 'wirb'
 
 group :development do
+  gem 'capistrano', '~> 3.12', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-pending', require: false
+  gem 'capistrano-rails', require: false
   gem 'pry'
   gem 'pry-byebug'
   gem 'rubocop'
