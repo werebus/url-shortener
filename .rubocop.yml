@@ -16,5 +16,4 @@ Style/MixinUsage:
 
 Style/GlobalVars:
   Exclude:
-    - 'config.ru'
     - 'script/console'

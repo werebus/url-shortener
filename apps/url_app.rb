@@ -19,14 +19,20 @@ class UrlApp < BaseApp
   end
 
   post '/' do
-    if request.content_length.to_i > 0
+    if request.content_length.to_i.positive?
       request.body.rewind
       params.merge! JSON.parse(request.body.read)
     end
     require_key
     require_url
 
-    json Redirect.where(url: params[:url]).first_or_create
+    r = Redirect.where(url: params[:url]).first_or_create
+    if r.valid?
+      status 201
+    else
+      status 422
+    end
+    json r
   end
 
   private
