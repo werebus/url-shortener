@@ -1,3 +1,4 @@
 short_url: 'https://exmpl.co'
 default_url: 'https://example.com'
+log_level: debug
 # secret:
