@@ -12,6 +12,7 @@ gem 'pg'
 gem 'rake'
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: false
+gem 'sinatra-cors', require: 'sinatra/cors'
 gem 'validate_url'
 gem 'wirb'
 
