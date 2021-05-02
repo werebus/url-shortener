@@ -7,14 +7,12 @@ ruby IO.read(File.expand_path('.ruby-version', __dir__)).strip
 
 gem 'activerecord', require: 'active_record'
 gem 'activesupport', require: 'active_support'
-gem 'fancy_irb'
 gem 'pg'
 gem 'rake'
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: false
 gem 'sinatra-cors', require: 'sinatra/cors'
 gem 'validate_url'
-gem 'wirb'
 
 group :development do
   gem 'capistrano', '~> 3.12', require: false
