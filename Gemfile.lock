@@ -41,6 +41,7 @@ GEM
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
+    nio4r (2.5.8)
     parallel (1.21.0)
     parser (3.0.3.2)
       ast (~> 2.4.1)
@@ -52,6 +53,8 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.10)
     public_suffix (4.0.6)
+    puma (5.5.2)
+      nio4r (~> 2.0)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -109,6 +112,7 @@ DEPENDENCIES
   pg
   pry
   pry-byebug
+  puma
   rake
   rubocop
   sinatra
@@ -117,7 +121,7 @@ DEPENDENCIES
   validate_url
 
 RUBY VERSION
-   ruby 2.7.5p203
+   ruby 3.0.3p157
 
 BUNDLED WITH
    2.3.3
