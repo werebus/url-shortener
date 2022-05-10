@@ -4,6 +4,7 @@ lock '~> 3.12'
 
 set :application, 'url-shortener'
 set :repo_url, 'https://github.com/werebus/url-shortener.git'
+set :branch, 'main'
 
 set :deploy_to, '/srv/url-shortener'
 
