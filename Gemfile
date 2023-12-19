@@ -15,11 +15,13 @@ gem 'sinatra-cors', require: 'sinatra/cors'
 gem 'validate_url'
 
 group :development do
+  gem 'bcrypt_pbkdf'
   gem 'capistrano', '~> 3.12', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
+  gem 'ed25519'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rubocop'
