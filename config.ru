@@ -37,7 +37,7 @@ class BaseApp < Sinatra::Base
     use ::Rack::CommonLogger, logger
   end
 
-  db_config = YAML.load_file root.join('config', 'database.yml')
+  db_config = YAML.load_file root.join('config', 'database.yml'), aliases: true
   ActiveRecord::Base.configurations = db_config
   ActiveRecord::Base.establish_connection settings.environment
 end

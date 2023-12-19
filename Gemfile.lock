@@ -126,7 +126,7 @@ DEPENDENCIES
   validate_url
 
 RUBY VERSION
-   ruby 3.0.4p208
+   ruby 3.1.4p223
 
 BUNDLED WITH
-   2.3.26
+   2.5.1
