@@ -27,9 +27,8 @@ class UrlApp < BaseApp
   end
 
   post '/' do
-    if request.content_length.to_i.positive?
-      params.merge! JSON.parse(request.body.read)
-    end
+    params.merge! JSON.parse(request.body.read) if request.content_length.to_i.positive?
+
     require_key
     require_url
 
