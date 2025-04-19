@@ -6,6 +6,7 @@ ruby file: '.ruby-version'
 
 gem 'activerecord', require: 'active_record'
 gem 'activesupport', require: 'active_support'
+gem 'irb'
 gem 'pg'
 gem 'puma'
 gem 'rackup'
@@ -22,9 +23,8 @@ group :development do
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
+  gem 'debug'
   gem 'ed25519'
-  gem 'pry'
-  gem 'pry-byebug'
   gem 'rubocop'
   gem 'rubocop-rake'
 end

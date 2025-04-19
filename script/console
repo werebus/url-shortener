@@ -19,7 +19,7 @@ def reload!
 end
 reload!
 
-config = YAML.load_file $root.join('config', 'database.yml')
+config = YAML.load_file $root.join('config', 'database.yml'), aliases: true
 
 ActiveRecord::Base.configurations = config
 ActiveRecord::Base.establish_connection $env.to_sym
