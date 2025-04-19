@@ -12,5 +12,6 @@ append :linked_files, 'config/database.yml', 'config/application.yml'
 append :linked_dirs, 'vendor/bundle'
 
 set :migration_role, :app
+set :capistrano_pending_role, :app
 
 set :passenger_restart_with_touch, true
