@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+# Prevent failures from being reported twice.
+Thread.report_on_exception = false
+
+require "kamal"
+
+begin
+  class Kamal::Configuration::Ssh
+    def user
+      ssh_config.fetch('user') do
+        Net::SSH::Config.for('apps.wereb.us').fetch(:user, ENV['USER'])
+      end
+    end
+  end
+  Kamal::Cli::Main.start(ARGV)
+rescue SSHKit::Runner::ExecuteError => e
+  puts "  \e[31mERROR (#{e.cause.class}): #{e.message}\e[0m"
+  puts e.cause.backtrace if ENV["VERBOSE"]
+  exit 1
+rescue => e
+  puts "  \e[31mERROR (#{e.class}): #{e.message}\e[0m"
+  puts e.backtrace if ENV["VERBOSE"]
+  exit 1
+end
