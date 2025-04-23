@@ -25,6 +25,7 @@ group :development do
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
   gem 'debug'
+  gem 'dotenv', require: 'dotenv/load'
   gem 'ed25519'
   gem 'rubocop'
   gem 'rubocop-rake'
