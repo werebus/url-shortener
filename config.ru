@@ -1,46 +1,12 @@
 # frozen_string_literal: true
 
-require 'active_support/inflector'
 require 'bundler'
 require 'pathname'
-require 'logger'
-require 'sinatra/config_file'
-require 'sinatra/custom_logger'
-require 'yaml'
 
-class BaseApp < Sinatra::Base
-  Bundler.require(:default, settings.environment)
+env = ENV.fetch 'RACK_ENV', 'development'
+Bundler.require :default, env
 
-  set :secret, nil
-  set :models_path, Pathname(__dir__).join('models').expand_path
-  set :apps_path, Pathname(__dir__).join('apps').expand_path
-  set :apps, '/' => 'UrlApp'
-
-  configure :development do
-    require 'sinatra/reloader'
-    register Sinatra::Reloader
-    also_reload settings.models_path.join('*.rb')
-  end
-
-  root = Pathname(settings.root)
-
-  register Sinatra::ConfigFile
-  config_file root.join('config', 'application.yml')
-
-  helpers Sinatra::CustomLogger
-  configure do
-    logfile = root.join('log', "#{settings.environment}.log").open('a')
-    logfile.sync = true
-    logger = Logger.new(logfile)
-    logger.level = Logger.const_get(settings.log_level.upcase)
-    set :logger, logger
-    use ::Rack::CommonLogger, logger
-  end
-
-  db_config = YAML.load_file root.join('config', 'database.yml'), aliases: true
-  ActiveRecord::Base.configurations = db_config
-  ActiveRecord::Base.establish_connection settings.environment
-end
+require_relative Pathname(__dir__).join('apps/base_app').expand_path
 
 BaseApp.settings.models_path.glob('*.rb').sort.each do |model|
   require model
