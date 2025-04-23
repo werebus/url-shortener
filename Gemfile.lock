@@ -129,6 +129,9 @@ GEM
       rack-protection (= 4.1.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
+    sinatra-activerecord (2.0.28)
+      activerecord (>= 4.1)
+      sinatra (>= 1.0)
     sinatra-contrib (4.1.1)
       multi_json (>= 0.0.2)
       mustermann (~> 3.0)
@@ -177,6 +180,7 @@ DEPENDENCIES
   rubocop
   rubocop-rake
   sinatra
+  sinatra-activerecord
   sinatra-contrib
   sinatra-cors
   validate_url
