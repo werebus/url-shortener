@@ -12,6 +12,7 @@ gem 'puma'
 gem 'rackup'
 gem 'rake'
 gem 'sinatra', require: 'sinatra/base'
+gem 'sinatra-activerecord', require: 'sinatra/activerecord'
 gem 'sinatra-contrib', require: false
 gem 'sinatra-cors', require: 'sinatra/cors'
 gem 'validate_url'
