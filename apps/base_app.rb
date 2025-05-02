@@ -9,7 +9,6 @@ require 'sinatra/custom_logger'
 class BaseApp < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
-  set :secret, nil
   set :models_path, Pathname(__dir__).join('../models').expand_path
   set :apps_path, Pathname(__dir__).expand_path
   set :apps, '/' => 'UrlApp'
@@ -21,9 +20,6 @@ class BaseApp < Sinatra::Base
   end
 
   root = Pathname(settings.root)
-
-  register Sinatra::ConfigFile
-  config_file root.join('../config/application.yml')
 
   helpers Sinatra::CustomLogger
   configure do
