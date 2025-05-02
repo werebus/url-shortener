@@ -30,7 +30,8 @@ class BaseApp < Sinatra::Base
     logfile = root.join("../log/#{settings.environment}.log").open('a')
     logfile.sync = true
     logger = Logger.new(logfile)
-    logger.level = Logger.const_get(settings.log_level.upcase)
+    log_level = ENV.fetch('LOG_LEVEL', 'DEBUG').upcase
+    logger.level = Logger.const_get(log_level)
     set :logger, logger
     use ::Rack::CommonLogger, logger
   end

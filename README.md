@@ -19,16 +19,15 @@ Instalation
 
 Configuration
 =============
-In `config/application.yml`:
+Set the following environment variables.
+They can be set in `.env` in development:
 
-* `short_url`: This is the location where your shortener is hosted. It will be
-  used to construct the short-url for human use.
-* `default_url`: This is your default website. If the shortener can't find a
-  short-url for the requiested slug, it will ridrect to that page on your
+* `DEFAULT_URL`: This is your default website. If the shortener can't find a
+  short-url for the requiested slug, it will redirect to that page on your
   default site.
-* `secret`: Optional, this secret must be present in the request as "`key`" in
-  order for the request to be allowed. If you ommit it, everyone is allowed to
-  use your site.
+* `SECRET`: Optional, this secret must be present in the request as "`key`" in
+  order for a `POST` request to be allowed. If you ommit it, everyone is allowed
+  to shorten URLs on your site.
 
 Use
 ===
