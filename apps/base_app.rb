@@ -11,7 +11,7 @@ class BaseApp < Sinatra::Base
 
   set :models_path, Pathname(__dir__).join('../models').expand_path
   set :apps_path, Pathname(__dir__).expand_path
-  set :apps, '/' => 'UrlApp'
+  set :apps, { '/' => 'UrlApp', '/up' => 'HealthApp' }
 
   configure :development do
     require 'sinatra/reloader'
