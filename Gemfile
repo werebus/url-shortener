@@ -15,6 +15,7 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord', require: 'sinatra/activerecord'
 gem 'sinatra-contrib', require: false
 gem 'sinatra-cors', require: 'sinatra/cors'
+gem 'thruster', require: false
 gem 'validate_url'
 
 group :development do
@@ -27,6 +28,7 @@ group :development do
   gem 'debug'
   gem 'dotenv', require: 'dotenv/load'
   gem 'ed25519'
+  gem 'kamal', require: false
   gem 'rubocop'
   gem 'rubocop-rake'
 end

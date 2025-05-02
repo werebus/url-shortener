@@ -1,0 +1,29 @@
+service: url-shortener
+image: werebus/url-shortener
+
+servers:
+  web:
+    - apps.wereb.us
+
+proxy:
+  ssl: true
+  host: mm.vu
+
+registry:
+  server: ghcr.io
+  username: werebus
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+  args:
+    RUBY_VERSION: <%= File.read(File.expand_path('.ruby-version', __dir__)).strip %>
+
+env:
+  clear:
+    DEFAULT_URL: 'https://wereb.us/'
+    LOG_LEVEL: 'info'
+  secret:
+    - DATABASE_URL
+    - SECRET
