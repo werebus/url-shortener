@@ -8,7 +8,7 @@ set :branch, 'main'
 
 set :deploy_to, '/srv/url-shortener'
 
-append :linked_files, 'config/database.yml', 'config/application.yml'
+append :linked_files, 'config/database.yml'
 append :linked_dirs, 'vendor/bundle'
 
 set :migration_role, :app

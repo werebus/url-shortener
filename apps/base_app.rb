@@ -9,7 +9,6 @@ require 'sinatra/custom_logger'
 class BaseApp < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
-  set :secret, nil
   set :models_path, Pathname(__dir__).join('../models').expand_path
   set :apps_path, Pathname(__dir__).expand_path
   set :apps, '/' => 'UrlApp'
@@ -22,15 +21,13 @@ class BaseApp < Sinatra::Base
 
   root = Pathname(settings.root)
 
-  register Sinatra::ConfigFile
-  config_file root.join('../config/application.yml')
-
   helpers Sinatra::CustomLogger
   configure do
     logfile = root.join("../log/#{settings.environment}.log").open('a')
     logfile.sync = true
     logger = Logger.new(logfile)
-    logger.level = Logger.const_get(settings.log_level.upcase)
+    log_level = ENV.fetch('LOG_LEVEL', 'DEBUG').upcase
+    logger.level = Logger.const_get(log_level)
     set :logger, logger
     use ::Rack::CommonLogger, logger
   end

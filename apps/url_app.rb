@@ -21,7 +21,7 @@ class UrlApp < BaseApp
       Redirect.increment_counter(:hits, r.id)
       redirect r.url, 301
     else
-      url = URI.join(settings.default_url, slug)
+      url = URI.join(ENV.fetch('DEFAULT_URL'), slug)
       redirect url.to_s, 301
     end
   end
@@ -44,9 +44,9 @@ class UrlApp < BaseApp
   private
 
   def require_key
-    return unless settings.secret?
+    return unless (secret = ENV.fetch('SECRET', nil)).present?
 
-    halt 401, 'Bad Key' unless params[:key] == settings.secret
+    halt 401, 'Bad Key' unless params[:key] == secret
   end
 
   def require_url
