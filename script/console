@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'irb'
-require 'irb/completion'
 require 'pathname'
-
 require 'bundler'
 
 $env = ENV.fetch 'RACK_ENV', 'development'
@@ -18,11 +15,6 @@ def reload!
   end.all?
 end
 reload!
-
-config = YAML.load_file $root.join('config', 'database.yml'), aliases: true
-
-ActiveRecord::Base.configurations = config
-ActiveRecord::Base.establish_connection $env.to_sym
 
 $stdout.sync = true
 IRB.setup nil
