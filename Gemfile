@@ -10,7 +10,7 @@ gem 'irb'
 gem 'pg'
 gem 'puma'
 gem 'rackup'
-gem 'rails', '~> 7.2.2', install_if: false
+gem 'rails', '~> 8.0.2', install_if: false
 gem 'rake'
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord', require: 'sinatra/activerecord'
