@@ -23,6 +23,5 @@ end
 
 require "rubygems"
 require "bundler/setup"
-require_relative File.expand_path("../lib/kamal_ext", __dir__)
 
 load Gem.bin_path("kamal", "kamal")
