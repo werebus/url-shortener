@@ -20,11 +20,6 @@ gem 'validate_url'
 
 group :development do
   gem 'bcrypt_pbkdf'
-  gem 'capistrano', '~> 3.12', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-passenger', require: false
-  gem 'capistrano-pending', require: false
-  gem 'capistrano-rails', require: false
   gem 'debug'
   gem 'dotenv', require: 'dotenv/load'
   gem 'ed25519'
